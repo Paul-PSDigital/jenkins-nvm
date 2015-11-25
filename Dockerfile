@@ -1,5 +1,4 @@
 FROM ubuntu:trusty
-MAINTAINER Ervin Varga <ervin.varga@gmail.com>
 
 # Make sure the package repository is up to date.
 RUN apt-get update
