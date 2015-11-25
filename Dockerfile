@@ -1,4 +1,9 @@
-FROM evarga/jenkins-slave
+FROM ubuntu:trusty
+MAINTAINER Ervin Varga <ervin.varga@gmail.com>
+
+# Make sure the package repository is up to date.
+RUN apt-get update
+RUN apt-get -y upgrade
 
 # Replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -8,6 +13,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 
 # Install base dependencies
 RUN apt-get update && apt-get install -y -q --no-install-recommends \
+	openjdk-7-jdk \
         apt-transport-https \
         build-essential \
         ca-certificates \
@@ -19,6 +25,8 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         software-properties-common \
         wget \
     && rm -rf /var/lib/apt/lists/*
+
+RUN adduser --quiet jenkins
 
 USER jenkins
 
