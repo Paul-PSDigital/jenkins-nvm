@@ -1,32 +1,4 @@
-FROM ubuntu:trusty
-
-# Make sure the package repository is up to date.
-RUN apt-get update
-RUN apt-get -y upgrade
-
-# Replace shell with bash so we can source files
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
-# Set debconf to run non-interactively
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-
-# Install base dependencies
-RUN apt-get update && apt-get install -y -q --no-install-recommends \
-	openjdk-7-jdk \
-        apt-transport-https \
-        openssh-server \
-        build-essential \
-        ca-certificates \
-        curl \
-        git \
-        libssl-dev \
-        python \
-        rsync \
-        software-properties-common \
-        wget \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN adduser --quiet jenkins
+FROM thepauleh/jenkins-slave
 
 USER jenkins
 
