@@ -17,3 +17,5 @@ ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
 
 RUN echo 'nvm install 4.2'
+
+USER root
