@@ -10,8 +10,7 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | b
     && source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
-    && nvm use default \
-		&& gem install scss-lint
+    && nvm use default
 
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
@@ -19,3 +18,5 @@ ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
 RUN echo 'nvm install 4.2'
 
 USER root
+
+RUN gem install --no-user-install scss-lint
