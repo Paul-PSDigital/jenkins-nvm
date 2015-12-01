@@ -19,4 +19,6 @@ RUN echo 'nvm install 4.2'
 
 USER root
 
+RUN pip install awscli
+
 RUN gem install --no-user-install scss-lint
